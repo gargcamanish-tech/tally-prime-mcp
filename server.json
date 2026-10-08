@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.gargcamanish-tech/tally-prime-mcp",
+  "title": "Tally Prime (Read & Write)",
+  "description": "Read and write TallyPrime data: vouchers, GST invoices, ledgers, stock items, with auto-backup.",
+  "repository": {
+    "url": "https://github.com/gargcamanish-tech/tally-prime-mcp",
+    "source": "github"
+  },
+  "version": "1.1.0",
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/gargcamanish-tech/tally-prime-mcp/releases/download/v1.1.0/tally-prime-mcp-1.1.0.mcpb",
+      "fileSha256": "257ea7d477c74a9ead3de165f61dc9f7f8bb398d4ed6ce2da7391871ba612d83",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
