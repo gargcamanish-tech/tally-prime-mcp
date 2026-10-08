@@ -1,0 +1,159 @@
+{
+  "manifest_version": "0.3",
+  "name": "tally-write-mcp",
+  "display_name": "Tally Prime (Read & Write)",
+  "version": "1.1.0",
+  "description": "Read TallyPrime data and create, alter and delete vouchers (incl. item invoices and stock journals), ledgers, stock items, groups, godowns and units, with an automatic data backup before every change.",
+  "author": {
+    "name": "Manish Bansal"
+  },
+  "license": "MIT",
+  "server": {
+    "type": "node",
+    "entry_point": "src/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/src/index.js"
+      ],
+      "env": {
+        "TALLY_HOST": "${user_config.TALLY_HOST}",
+        "TALLY_PORT": "${user_config.TALLY_PORT}",
+        "TALLY_READONLY": "${user_config.TALLY_READONLY}",
+        "TALLY_AUTO_BACKUP": "${user_config.TALLY_AUTO_BACKUP}",
+        "TALLY_BACKUP_DIR": "${user_config.TALLY_BACKUP_DIR}",
+        "TALLY_BACKUP_KEEP": "${user_config.TALLY_BACKUP_KEEP}"
+      }
+    }
+  },
+  "user_config": {
+    "TALLY_HOST": {
+      "type": "string",
+      "title": "Tally host",
+      "description": "Host or IP of the PC running TallyPrime",
+      "default": "localhost",
+      "required": false
+    },
+    "TALLY_PORT": {
+      "type": "number",
+      "title": "Tally port",
+      "description": "TallyPrime XML port (F1 > Settings > Connectivity)",
+      "default": 9001,
+      "required": false
+    },
+    "TALLY_READONLY": {
+      "type": "boolean",
+      "title": "Read-only mode",
+      "description": "Block all create/alter/delete tools",
+      "default": false,
+      "required": false
+    },
+    "TALLY_AUTO_BACKUP": {
+      "type": "boolean",
+      "title": "Backup before every change",
+      "description": "Copy the company data folder before each create/alter/delete",
+      "default": true,
+      "required": false
+    },
+    "TALLY_BACKUP_DIR": {
+      "type": "directory",
+      "title": "Backup folder",
+      "description": "Where backups are created",
+      "default": "${DESKTOP}/Tally Backups",
+      "required": false
+    },
+    "TALLY_BACKUP_KEEP": {
+      "type": "number",
+      "title": "Backups to keep per company",
+      "description": "Oldest are removed beyond this number (0 = keep all)",
+      "default": 30,
+      "required": false
+    }
+  },
+  "tools": [
+    {
+      "name": "tally_status",
+      "description": "Check connection, companies and backup settings"
+    },
+    {
+      "name": "list_ledgers",
+      "description": "List ledgers with balances"
+    },
+    {
+      "name": "list_stock_items",
+      "description": "List stock items with closing stock"
+    },
+    {
+      "name": "list_masters",
+      "description": "List groups, stock groups, godowns, units, cost centres"
+    },
+    {
+      "name": "get_master",
+      "description": "Full details of a ledger, stock item or other master"
+    },
+    {
+      "name": "list_voucher_types",
+      "description": "List voucher types"
+    },
+    {
+      "name": "list_vouchers",
+      "description": "List vouchers in a date range"
+    },
+    {
+      "name": "get_voucher",
+      "description": "Get one voucher in full"
+    },
+    {
+      "name": "list_backups",
+      "description": "List data backups"
+    },
+    {
+      "name": "backup_data",
+      "description": "Back up company data now"
+    },
+    {
+      "name": "create_voucher",
+      "description": "Create a voucher, item invoice or stock journal"
+    },
+    {
+      "name": "alter_voucher",
+      "description": "Modify an existing voucher"
+    },
+    {
+      "name": "delete_voucher",
+      "description": "Delete a voucher"
+    },
+    {
+      "name": "create_ledger",
+      "description": "Create a ledger"
+    },
+    {
+      "name": "alter_ledger",
+      "description": "Modify / rename a ledger (opening change needs confirmation)"
+    },
+    {
+      "name": "create_stock_item",
+      "description": "Create a stock item"
+    },
+    {
+      "name": "alter_stock_item",
+      "description": "Modify / rename a stock item (opening change needs confirmation)"
+    },
+    {
+      "name": "create_master",
+      "description": "Create a group, stock group, godown, unit or cost centre"
+    },
+    {
+      "name": "alter_master",
+      "description": "Modify / rename a group, stock group, godown, unit or cost centre"
+    },
+    {
+      "name": "delete_master",
+      "description": "Delete a master"
+    },
+    {
+      "name": "import_raw_xml",
+      "description": "Import raw Tally XML"
+    }
+  ]
+}
